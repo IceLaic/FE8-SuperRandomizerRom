@@ -1,0 +1,24 @@
+#ifndef _FE8_
+    ERROR "You're not assembling to an FE8 ROM!"
+#endif
+
+#include EAStdlib.event
+#include "Extensions/Hack Installation.txt"
+
+
+#ifndef FreeSpace
+    #define FreeSpace 0xB2A610
+    ORG FreeSpace
+#endif
+
+PUSH
+
+ORG $153B8
+callHack_r3(SuperRandomizer)
+SHORT 0 //NOP to prevent setting turn count to 20,000 or whatever
+// Please don't fuck me on this one SHORT 0 //NOP because I don't know what else to do
+POP
+
+ALIGN 4
+SuperRandomizer:
+#incbin "SuperRandomizer.dmp"

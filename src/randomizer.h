@@ -99,7 +99,8 @@ typedef struct {
   u16 CasualMode:1;//1
   u16 RandomizeMusic:1;//2
   u16 RandomizeClasses:2; //4
-  u16 UnusedShort:12;
+  u16 SuperRandomizer:1; //16
+  u16 UnusedShort:11;
 } OptionsStruct;
 
 typedef struct {
@@ -116,6 +117,7 @@ typedef struct {
   u8 CasualMode;
   u8 RandomizeMusic;
   u8 PlayableMonsters;
+  u8 SuperRandomizer;
 
   //more options here
 } OptionsProc;
@@ -202,6 +204,7 @@ int GenerateMonsterClass(u8);
 int NewPortraitGetter(int mugID);
 int NameStringWrapper(int textID);
 int CasualModeCheck();
+int SuperRandomizerCheck();
 int NewCheckCHES(u8 num, u8 unk1, LOCAstack* stack, LOCAdata* LOCA);
 void RandomizeEventItem(ProcState* CurrentProc, Unit* CurrentUnit, int ItemID);
 int FirMusicWrapper();

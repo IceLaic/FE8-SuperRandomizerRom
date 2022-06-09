@@ -340,6 +340,10 @@ int CasualModeCheck(){
   return OptionsSaved->CasualMode;
 };
 
+int SuperRandomizerCheck() {
+  return OptionsSaved->SuperRandomizer;
+}
+
 
 ///bl at 839a8 and nop 8 times
 int NewCheckCHES(u8 num, u8 unk1, LOCAstack* stack, LOCAdata* LOCA){

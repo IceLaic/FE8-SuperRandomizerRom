@@ -331,6 +331,8 @@ void updateRandomOptionsPage(OptionsProc* CurrentProc){
       //option names
       DrawTextInline(0, BGLoc(BG0Buffer, 2, 3), 3, 0, 7, "Map Music:");
       DrawTextInline(0, BGLoc(BG0Buffer, 2, 5), 3, 0, 10, "Playable Monsters:");
+	  //DrawTextInline(0, BGLoc(BG0Buffer, 2, 7), 3, 0, 10, "Super Randomizer:");
+	  DrawTextInline(0, BGLoc(BG0Buffer, 2, 9), 3, 0, 10, "Fuck you Mangs");
 
       if (CurrentProc->RandomizeMusic == 0){
         DrawTextInline(0, BGLoc(BG0Buffer, 15, 3), 2, 0, 5, "Normal");
@@ -341,6 +343,11 @@ void updateRandomOptionsPage(OptionsProc* CurrentProc){
         DrawTextInline(0, BGLoc(BG0Buffer, 15, 5), 2, 0, 5, "No");
       }
       else DrawTextInline(0, BGLoc(BG0Buffer, 15, 5), 2, 0, 5, "Yes");
+	  
+	  //if (CurrentProc->SuperRandomizer == 0){
+      //  DrawTextInline(0, BGLoc(BG0Buffer, 15, 7), 2, 0, 5, "No");
+      //}
+      //else DrawTextInline(0, BGLoc(BG0Buffer, 15, 7), 2, 0, 5, "Yes");
   }
 
 
@@ -358,6 +365,7 @@ void updateRandomOptionsPage(OptionsProc* CurrentProc){
   OptionsSaved->CasualMode = CurrentProc->CasualMode;
   OptionsSaved->RandomizeMusic = CurrentProc->RandomizeMusic;
   OptionsSaved->PlayableMonsters = CurrentProc->PlayableMonsters;
+  OptionsSaved->SuperRandomizer = CurrentProc->SuperRandomizer;
 };
 
 
@@ -398,6 +406,7 @@ void RandomOptionsSetup(OptionsProc* CurrentProc){
   CurrentProc->CasualMode = 0;
   CurrentProc->RandomizeMusic = 1;
   CurrentProc->PlayableMonsters = 1;
+  CurrentProc->SuperRandomizer = 0;
   CurrentProc->Page = 1;
 
   updateRandomOptionsPage(CurrentProc);
@@ -604,6 +613,20 @@ void RandomOptionsLoop(OptionsProc* CurrentProc){
       if ((newInput & InputRight) != 0) {
         if (CurrentProc->PlayableMonsters == 0) CurrentProc->PlayableMonsters = 1;
         else CurrentProc->PlayableMonsters = 0;
+        updateRandomOptionsPage(CurrentProc);
+      };
+    };
+	
+	//super randomizer!
+	if (CurrentProc->CursorIndex == 2) {
+      if ((newInput & InputLeft) != 0) {
+        if (CurrentProc->SuperRandomizer == 0) CurrentProc->SuperRandomizer = 1;
+        else CurrentProc->SuperRandomizer = 0;
+        updateRandomOptionsPage(CurrentProc);
+      };
+      if ((newInput & InputRight) != 0) {
+        if (CurrentProc->SuperRandomizer == 0) CurrentProc->SuperRandomizer = 1;
+        else CurrentProc->SuperRandomizer = 0;
         updateRandomOptionsPage(CurrentProc);
       };
     };
